@@ -1,0 +1,111 @@
+/* 全体 */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+a:link {
+  color:#6f6f6f;
+}
+
+h3 {
+  font-size: 1.2rem; /* 元のHTMLにはh3の指定がなかったので、仮で追加 */
+}
+
+/* ヘッダー */
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+header .lead {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* プロフィール */
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 30px;
+}
+
+/* セクション */
+.section h2 {
+  font-size: 1.8rem;
+}
+
+.section ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.section li {
+  margin-bottom: 5px;
+}
+
+/* 連絡先 (元のCSSより引用) */
+.contact {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* YouTube動画のレスポンシブ対応 (機能追加) */
+.youtube-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  margin-bottom: 1rem;
+}
+
+.youtube-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-img {
+    margin-bottom: 20px;
+  }
+  .hobby-item, .blog-card {
+    width: 100%;
+  }
+  .resizeimage {
+    width: 100%;
+  }
+}
