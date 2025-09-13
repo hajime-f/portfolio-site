@@ -91,7 +91,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-ap-northeast-1-9991808c-55d0",
-          "S3Key": "serverless/ogp-fetcher-service/dev/1757775006005-2025-09-13T14:50:06.005Z/ogp-fetcher-service.zip"
+          "S3Key": "serverless/ogp-fetcher-service/dev/1757775383000-2025-09-13T14:56:23.000Z/ogp-fetcher-service.zip"
         },
         "Handler": "wsgi_handler.handler",
         "Runtime": "python3.13",
@@ -109,14 +109,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks": {
+    "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "p91QRSQs6zH6Pz7OpqKS8PD4/5InWPAzOEOfmOxjnng="
+        "CodeSha256": "74fVBEiObGhPsfIfxzczm6sT5dTz3lZMDzm2qbQY6D8="
       }
     },
     "HttpApi": {
@@ -225,7 +225,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks"
+        "Ref": "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI"
       },
       "Export": {
         "Name": "sls-ogp-fetcher-service-dev-ApiLambdaFunctionQualifiedArn"

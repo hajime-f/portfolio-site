@@ -15,10 +15,18 @@ def get_ogp():
         return jsonify({"error": "URL is required"}), 400
     
     try:
-        # 指定されたURLからHTMLを取得
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        response = requests.get(url, headers=headers, timeout=5)
-        response.raise_for_status() # エラーがあれば例外を発生させる
+        # ブラウザからのアクセスであることを偽装するためのヘッダー
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+            'Accept-Language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+        }
+        
+        # タイムアウトを少し長めに設定し、ヘッダーを付与してリクエスト
+        response = requests.get(url, headers=headers, timeout=10)
+
+        # エラーがあれば例外を発生させる
+        response.raise_for_status()
         
         # BeautifulSoupでHTMLを解析
         soup = BeautifulSoup(response.content, 'html.parser')

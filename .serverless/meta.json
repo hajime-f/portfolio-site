@@ -104,7 +104,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-ap-northeast-1-9991808c-55d0",
-                  "S3Key": "serverless/ogp-fetcher-service/dev/1757775006005-2025-09-13T14:50:06.005Z/ogp-fetcher-service.zip"
+                  "S3Key": "serverless/ogp-fetcher-service/dev/1757775383000-2025-09-13T14:56:23.000Z/ogp-fetcher-service.zip"
                 },
                 "Handler": "wsgi_handler.handler",
                 "Runtime": "python3.13",
@@ -122,14 +122,14 @@
                 "ApiLogGroup"
               ]
             },
-            "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks": {
+            "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ApiLambdaFunction"
                 },
-                "CodeSha256": "p91QRSQs6zH6Pz7OpqKS8PD4/5InWPAzOEOfmOxjnng="
+                "CodeSha256": "74fVBEiObGhPsfIfxzczm6sT5dTz3lZMDzm2qbQY6D8="
               }
             },
             "HttpApi": {
@@ -238,7 +238,7 @@
             "ApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks"
+                "Ref": "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI"
               },
               "Export": {
                 "Name": "sls-ogp-fetcher-service-dev-ApiLambdaFunctionQualifiedArn"
@@ -301,7 +301,7 @@
           "timeout": 6,
           "runtime": "python3.13",
           "vpc": {},
-          "versionLogicalId": "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks"
+          "versionLogicalId": "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI"
         }
       },
       "plugins": [
@@ -417,7 +417,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-ap-northeast-1-9991808c-55d0",
-                "S3Key": "serverless/ogp-fetcher-service/dev/1757775006005-2025-09-13T14:50:06.005Z/ogp-fetcher-service.zip"
+                "S3Key": "serverless/ogp-fetcher-service/dev/1757775383000-2025-09-13T14:56:23.000Z/ogp-fetcher-service.zip"
               },
               "Handler": "wsgi_handler.handler",
               "Runtime": "python3.13",
@@ -435,14 +435,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks": {
+          "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "p91QRSQs6zH6Pz7OpqKS8PD4/5InWPAzOEOfmOxjnng="
+              "CodeSha256": "74fVBEiObGhPsfIfxzczm6sT5dTz3lZMDzm2qbQY6D8="
             }
           },
           "HttpApi": {
@@ -551,7 +551,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks"
+              "Ref": "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI"
             },
             "Export": {
               "Name": "sls-ogp-fetcher-service-dev-ApiLambdaFunctionQualifiedArn"
@@ -617,12 +617,12 @@
     "serviceProviderAwsCfStackName": "ogp-fetcher-service-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-northeast-1:417426169388:stack/ogp-fetcher-service-dev/e4f600a0-90ab-11f0-86ff-0ae66ee16521",
     "serviceProviderAwsCfStackCreated": "2025-09-13T14:14:00.951Z",
-    "serviceProviderAwsCfStackUpdated": "2025-09-13T14:46:58.037Z",
+    "serviceProviderAwsCfStackUpdated": "2025-09-13T14:50:09.976Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "ApiLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:ap-northeast-1:417426169388:function:ogp-fetcher-service-dev-api:3",
+        "OutputValue": "arn:aws:lambda:ap-northeast-1:417426169388:function:ogp-fetcher-service-dev-api:4",
         "Description": "Current Lambda function version",
         "ExportName": "sls-ogp-fetcher-service-dev-ApiLambdaFunctionQualifiedArn"
       },
@@ -737,7 +737,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-ap-northeast-1-9991808c-55d0",
-              "S3Key": "serverless/ogp-fetcher-service/dev/1757775006005-2025-09-13T14:50:06.005Z/ogp-fetcher-service.zip"
+              "S3Key": "serverless/ogp-fetcher-service/dev/1757775383000-2025-09-13T14:56:23.000Z/ogp-fetcher-service.zip"
             },
             "Handler": "wsgi_handler.handler",
             "Runtime": "python3.13",
@@ -755,14 +755,14 @@
             "ApiLogGroup"
           ]
         },
-        "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks": {
+        "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "ApiLambdaFunction"
             },
-            "CodeSha256": "p91QRSQs6zH6Pz7OpqKS8PD4/5InWPAzOEOfmOxjnng="
+            "CodeSha256": "74fVBEiObGhPsfIfxzczm6sT5dTz3lZMDzm2qbQY6D8="
           }
         },
         "HttpApi": {
@@ -871,7 +871,7 @@
         "ApiLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "ApiLambdaVersionXuhtYh7ZIUrH2M5Wmm9lFOlb9l1HpPkv6WQJRdlHks"
+            "Ref": "ApiLambdaVersioniCH2ug4ZKVs3Mc9QHPTuZTkQqO85lv85izDjpMJ7UI"
           },
           "Export": {
             "Name": "sls-ogp-fetcher-service-dev-ApiLambdaFunctionQualifiedArn"
