@@ -80,33 +80,43 @@
         <h2>アカウント</h2>
         <ul>
           <li>GitHub</li>
+	  <p>
           <a href="https://github.com/hajime-f" target="_blank" rel="noopener" class="ogp-link-wrapper">
 	    <div id="ogp-preview-github"></div>
 	  </a>
+	  </p>
           <li>Note</li>
+	  <p>
           <a href="https://note.com/fujitahajime" target="_blank" rel="noopener" class="ogp-link-wrapper">
 	    <div id="ogp-preview-note"></div>
 	  </a>
+	  </p>
           <li>Qiita</li>
+	  <p>
           <a href="https://qiita.com/hajime-f" target="_blank" rel="noopener" class="ogp-link-wrapper">
 	    <div id="ogp-preview-qiita"></div>
 	  </a>
+	  </p>
           <li>LinkedIn</li>
+	  <p>
           <a href="https://www.linkedin.com/in/fujitahajime/details/experience/?locale=ja_JP" target="_blank" rel="noopener" class="ogp-link-wrapper">
 	    <div id="ogp-preview-linkedin"></div>
 	  </a>
+	  </p>
         </ul>
       </section>
       
       <section class="section">
-        <h2>性格・才能</h2>
+        <h2>パーソナリティ</h2>
+	<h3>キャラクター</h3>
         <p>自分の意思と力で何かを成し遂げるプロセスを経て、達成感を得ることに生き甲斐を感じるタイプです。我が強く、自分で本当に納得しなければ絶対に人の言うことを受け入れません。逆に、自分で納得して一度決めたことは、トコトン貫く意志の強さを持っています。</p>
         <p>目標が明確になり、その意義に納得すると、手段を選ばず達成に向かいます。いまより未熟だった若いころは、周囲の感情を考慮しないまま突き進む傾向にあったので、反感を買うこともしばしばありましたが、年を重ねて知恵をつけ、穏やかになりました。</p>
         <p>ちなみに、16 personalities では<a href="https://www.16personalities.com/ja/entj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC" target="_blank" rel="noopener">「指揮官（ENTJ）」</a>です。</p>
         <a href="https://www.16personalities.com/ja/entj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC" target="_blank" rel="noopener" class="ogp-link-wrapper">
 	  <div id="ogp-preview-entj"></div>
 	</a>	  
-        <p>この性格が、<b>「場を仕切る」</b>という私の才能（センス）を開花させました。汎用的な才能ですが、下記の３つが分かりやすく発動条件を満たすので、非常に得意です。</p>
+	<h3>センス</h3>
+        <p>この性格が、<b>「場を仕切る」</b>という私のセンス（才能）を開花させました。汎用的なセンスですが、下記の３つが分かりやすく発動条件を満たすので、非常に得意です。</p>
         <ul>
           <li>ファシリテーション</li>
           <li>プレゼンテーション</li>
@@ -148,6 +158,12 @@
           </ul>
         </ul>
         <img class="resizeimage" src="./images/skill.png" alt="エンジニアリングスキル">
+	<p>ちなみに、この自己紹介ページの OGP カードの表示は、下記の構成で実現しています。</p>
+	<ul>
+	  <li>フロントエンド：Javascript</li>
+	  <li>バックエンド：Python（Flask, beautifulsoup）</li>
+	  <li>インフラ：AWS（lambda, API Gateway）</li>
+	</ul>
       </section>
 
       <section class="section">
@@ -235,12 +251,34 @@
     </footer>
   </div>
 
-  <script>
-  // APIエンドポイントを定数として定義
+<script>
   const OGP_API_ENDPOINT = 'https://c1kdm2whg0.execute-api.ap-northeast-1.amazonaws.com/api/ogp';
 
   /**
-   * 指定されたURLのOGP情報を取得し、指定された場所にプレビューを表示する関数
+   * プレビューカードのHTMLを生成して表示するヘルパー関数
+   * @param {object} data - OGPデータ
+   * @param {string} targetUrl - 対象のURL
+   * @param {HTMLElement} container - 表示先のDOM要素
+   */
+  function buildOgpCard(data, targetUrl, container) {
+    if (data && data.title) {
+      container.innerHTML = `
+        <div class="ogp-card">
+          ${data.image ? `<img src="${data.image}" alt="OGP Image" class="ogp-image">` : ''}
+          <div class="ogp-text">
+            <h3 class="ogp-title">${data.title}</h3>
+            <p class="ogp-description">${data.description || ''}</p>
+            <span class="ogp-link">${data.url || targetUrl}</span>
+          </div>
+        </div>
+      `;
+    } else {
+      container.innerHTML = '<div class="ogp-card-error">プレビューを取得できませんでした。</div>';
+    }
+  }
+
+  /**
+   * 指定されたURLのOGP情報を取得し、プレビューを表示する関数（キャッシュ機能付き）
    * @param {string} targetUrl - OGP情報を取得したいURL
    * @param {string} containerId - プレビューを表示するDOM要素のID
    */
@@ -248,7 +286,14 @@
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // ローディング表示（任意）
+    const cacheKey = `ogp-cache:${targetUrl}`;
+
+    const cachedData = sessionStorage.getItem(cacheKey);
+    if (cachedData) {
+      buildOgpCard(JSON.parse(cachedData), targetUrl, container);
+      return;
+    }
+
     container.innerHTML = '<div class="ogp-card-loading">読み込み中...</div>';
 
     try {
@@ -258,21 +303,10 @@
       const data = await response.json();
       if (data.error) throw new Error(data.error);
 
-      // プレビューカードを生成
-      if (data.title) {
-        container.innerHTML = `
-          <div class="ogp-card">
-            ${data.image ? `<img src="${data.image}" alt="OGP Image" class="ogp-image">` : ''}
-            <div class="ogp-text">
-              <h3 class="ogp-title">${data.title}</h3>
-              <p class="ogp-description">${data.description || ''}</p>
-              <span class="ogp-link">${data.url || targetUrl}</span>
-            </div>
-          </div>
-        `;
-      } else {
-        container.innerHTML = '<div class="ogp-card-error">プレビューを取得できませんでした。</div>';
-      }
+      sessionStorage.setItem(cacheKey, JSON.stringify(data));
+      
+      buildOgpCard(data, targetUrl, container);
+
     } catch (error) {
       console.error(`Failed to fetch OGP for ${targetUrl}:`, error);
       container.innerHTML = '<div class="ogp-card-error">プレビューの読み込みに失敗しました。</div>';
@@ -280,20 +314,19 @@
   }
 
   // ページが読み込まれたら、プレビューを生成したいURLと表示場所のペアを渡す
-    window.addEventListener('DOMContentLoaded', () => {
-	generateOgpPreview('https://www.amazon.co.jp/dp/B07NP49KBT/', 'ogp-preview-book');
-	generateOgpPreview('https://qiita.com/hajime-f/items/f2cdae75bcb033322ec8', 'ogp-preview-article1');
-	generateOgpPreview('https://qiita.com/hajime-f/items/2c10db500bc40d1f8e29', 'ogp-preview-article2');
-	generateOgpPreview('https://note.com/fujitahajime/n/n9c091dc09447', 'ogp-preview-article3');
-	generateOgpPreview('https://note.com/fujitahajime/n/nf96b7db4d392', 'ogp-preview-article4');
-	generateOgpPreview('https://github.com/hajime-f', 'ogp-preview-github');
-	generateOgpPreview('https://note.com/fujitahajime', 'ogp-preview-note');
-	generateOgpPreview('https://qiita.com/hajime-f', 'ogp-preview-qiita');
-	generateOgpPreview('https://www.linkedin.com/in/fujitahajime/', 'ogp-preview-linkedin');
-	generateOgpPreview('https://www.youtube.com/@HajimeFujita', 'ogp-preview-youtube');
-	generateOgpPreview('https://www.16personalities.com/ja/entj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC', 'ogp-preview-entj');
-	// 他にも追加したい場合はここに追加
-    });
+  window.addEventListener('DOMContentLoaded', () => {
+    generateOgpPreview('https://www.amazon.co.jp/dp/B07NP49KBT/', 'ogp-preview-book');
+    generateOgpPreview('https://qiita.com/hajime-f/items/f2cdae75bcb033322ec8', 'ogp-preview-article1');
+    generateOgpPreview('https://qiita.com/hajime-f/items/2c10db500bc40d1f8e29', 'ogp-preview-article2');
+    generateOgpPreview('https://note.com/fujitahajime/n/n9c091dc09447', 'ogp-preview-article3');
+    generateOgpPreview('https://note.com/fujitahajime/n/nf96b7db4d392', 'ogp-preview-article4');
+    generateOgpPreview('https://github.com/hajime-f', 'ogp-preview-github');
+    generateOgpPreview('https://note.com/fujitahajime', 'ogp-preview-note');
+    generateOgpPreview('https://qiita.com/hajime-f', 'ogp-preview-qiita');
+    generateOgpPreview('https://www.linkedin.com/in/fujitahajime/', 'ogp-preview-linkedin');
+    generateOgpPreview('https://www.youtube.com/@HajimeFujita', 'ogp-preview-youtube');
+    generateOgpPreview('https://www.16personalities.com/ja/entj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC', 'ogp-preview-entj');
+  });
 
   async function fetchAndShowOgp() {
     const urlInput = document.getElementById('ogpUrlInput');
@@ -307,7 +340,6 @@
 
     const apiEndpoint = 'https://c1kdm2whg0.execute-api.ap-northeast-1.amazonaws.com/api/ogp';
     
-    // ローディング表示
     resultContainer.innerHTML = '<p>読み込み中...</p>';
 
     try {
@@ -323,7 +355,6 @@
         throw new Error(data.error);
       }
 
-      // 結果を元にプレビューカードを作成
       if (data.title) {
         resultContainer.innerHTML = `
           <div class="ogp-card">

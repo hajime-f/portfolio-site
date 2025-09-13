@@ -149,7 +149,7 @@ footer {
 }
 
 .ogp-image {
-  width: 110px;
+  width: 200px;
   height: 110px;
   object-fit: cover;
   flex-shrink: 0;
