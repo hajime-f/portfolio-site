@@ -48,6 +48,6 @@ def get_ogp():
         return jsonify({"error": f"An error occurred: {e}"}), 500
     
 def get_meta_property(soup, prop):
-    """ 指定されたpropertyを持つmetaタグのcontentを返すヘルパー関数 """
+    # 指定されたpropertyを持つmetaタグのcontentを返すヘルパー関数
     tag = soup.find('meta', property=prop)
     return tag['content'] if tag else None

@@ -3,7 +3,7 @@ service: ogp-fetcher-service
 provider:
   name: aws
   runtime: python3.13 # 使用するPythonのバージョン
-  region: ap-northeast-1 # デプロイするAWSリージョン (例: 東京)
+  region: ap-northeast-1 # デプロイするAWSリージョン
 
 functions:
   api:
