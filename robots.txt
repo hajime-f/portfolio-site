@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hajime-f.netlify.app/sitemap.xml
