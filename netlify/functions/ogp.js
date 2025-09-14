@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 // Netlify FunctionsはNode.jsで動作します
 exports.handler = async (event) => {
   // フロントエンドから渡されたURLを取得

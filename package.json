@@ -2,5 +2,8 @@
   "devDependencies": {
     "serverless-python-requirements": "^6.1.2",
     "serverless-wsgi": "^3.1.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   }
 }
