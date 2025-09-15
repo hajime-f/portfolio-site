@@ -18,18 +18,47 @@ a:link {
 }
 
 h3 {
-  font-size: 1.2rem; /* 元のHTMLにはh3の指定がなかったので、仮で追加 */
+  font-size: 1.2rem;
 }
 
 /* ヘッダー */
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+header {
+  display: flex; /* 横並びレイアウト */
+  justify-content: space-between; /* 両端に寄せる */
+  align-items: center; /* 上下中央揃え */
+  border-bottom: 1px solid #eee; /* 区切り線 */
+  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 
-header .lead {
+.header-content h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.subtitle {
   font-size: 1.2rem;
   color: #666;
+  margin: 5px 0 0 0;
+  font-weight: bold;
+}
+
+.lang-switch {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.lang-switch:hover {
+  background-color: #007bff;
+  border: 1px solid #007bff;  
+  color: white;
+  text-decoration: none;
 }
 
 /* プロフィール */
@@ -96,8 +125,8 @@ footer {
 .text-box {
   background-color: #f0f7ff;      /* 背景色を薄い青に */
   border-left: 5px solid #007bff;  /* 左の枠線を青く、太く */
-  padding: 1em 1.5em;             /* 内側の余白を調整 */
-  margin: 1.5em 0;                /* 外側の余白 (上下) */
+  padding: 1em 1em;             /* 内側の余白を調整 */
+  margin: 1.0em 0;                /* 外側の余白 (上下) */
 }
 
 /* ボックス内の最後の段落の下の余白をなくして、見た目を整えます */
@@ -233,4 +262,8 @@ footer {
   .resizeimage {
     width: 100%;
   }
+}
+
+:lang(en) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
